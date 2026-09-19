@@ -39,7 +39,7 @@ class json_handler():
     :type file: str
     '''
     def __init__(self,file:str):
-        self.file = file
+        self.file = file+'.json'
 
     def parse(self,data:dict):
         '''

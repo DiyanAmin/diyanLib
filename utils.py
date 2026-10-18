@@ -1,3 +1,8 @@
+import random
+import string
+import sys
+from time import sleep
+
 def convert_to_perc(num:float,decimal_places:int=2):
     '''
     Converts given float number to percentage
@@ -28,6 +33,30 @@ def average(array:list):
         return 'Invalid Array'
 
     return sum(array)/len(array)
+
+def dprint(dmsg:str='DEBUG',text:str='Debug message'):
+    '''
+    Short for Debug Print. Prints text with a debug message. Example: `[DEBUG/your debug msg here] your maeesage here`
+    
+    :param dmsg: Debug message
+    :type dmsg: str
+    :param text: text
+    :type text: str
+    '''
+
+    print(f'[{dmsg}] {text}')
+
+def print_fancy(title:str,display_data:dict):
+    len_title = len([i for i in title])
+
+    columns = list(display_data.keys())
+    data = list(display_data.values())
+
+    print('-'*10,title,'-'*10)
+
+    for j in range(len(display_data)):
+        print(f'\t{columns[j]}: {data[j]}')
+    print('-'*(22+len_title))
 
 #Handy calculator. JUST in case i need it.
 
@@ -66,3 +95,19 @@ class calculator():
     
     def power(self):
         return self.num1 ** self.num2
+    
+
+def randomizer(length:int=5):
+    output = ''
+    for i in range(length):
+        output+=random.choice(string.ascii_letters)
+    return output
+
+def progress_bar(total=30, delay=0.1):
+    for i in range(total + 1):
+        bar = ('#' * i).ljust(total, '-')
+        percent = int((i / total) * 100)
+        sys.stdout.write(f'\r[{bar}] {percent}%')
+        sys.stdout.flush()
+        sleep(delay)
+    print()

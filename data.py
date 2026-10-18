@@ -31,36 +31,28 @@ def retrieve(file_path:str):
     with open(file_path,'r') as f:
         return f.read()
     
-class json_handler():
-    '''
-    Perfom data functions on json files.
+from json import load, dump, JSONDecodeError
 
-    :param file: The json file name.
-    :type file: str
+class json_handler:
     '''
-    def __init__(self,file:str):
-        self.file = file+'.json'
+    Perform data functions on json files.
+    '''
+    def __init__(self, file: str):
+        self.file = file + '.json'
 
-    def parse(self,data:dict):
+    def save(self, data: dict):
         '''
         Parses dictionary to json file.
-        
-        :param data: The dictionary   
-        :type data: dict
         '''
-        with open(self.file,'w') as f:
-            dump(data,f)
-    
-    def unparse(self):
-        '''
-        Returns the data from json file as dict
-        
-        :return: Data
-        :rtype: dict
-        '''
+        with open(self.file, 'w') as f:
+            dump(data, f)
 
+    def get(self) -> dict:
+        '''
+        Returns the data from json file as dict.
+        '''
         try:
-            with open(self.file,'r') as f:
-                return load(f)
-        except (FileNotFoundError,JSONDecodeError):
-            return 'File not found'
+            with open(self.file, 'r') as f:
+                return load(f)   # ✅ returns dict
+        except (FileNotFoundError, JSONDecodeError):
+            return {}           # ✅ return empty dict instead of string

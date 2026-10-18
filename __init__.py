@@ -20,7 +20,7 @@ if preferences.get('do_import'):
     from . import imports
     print('Imported diyanLib.imports')
 else:
-    print('Variable do_import is set to False. Set it to True using diyanLib.imports.do_import=True. Setting to false improves execution speed by NOT importing libraries')
+    print('Variable do_import is set to False. Set it to True using diyanLib.settings.save(do_import=True). Setting to false improves execution speed by NOT importing libraries')
 
 from . import utils
 print('Imported diyanLib.utils')
